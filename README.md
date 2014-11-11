@@ -1,4 +1,4 @@
-vagrant-wordpress-quickstart
+Wordpress quickstart
 ============================
 
 A project that helps you get started on wordpress easily. Although <a href="https://github.com/Automattic/vip-quickstart">VIP</a> has provided a simple and easy
