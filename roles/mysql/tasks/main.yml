@@ -1,3 +1,6 @@
 ---
     - name: Install mysql
       apt: pkg=mysql-server
+
+    - name: Install python mysqldb
+      apt: pkg=python-mysqldb

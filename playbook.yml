@@ -8,3 +8,4 @@
       - mysql
       - php5
       - wp-cli
+      - wordpress

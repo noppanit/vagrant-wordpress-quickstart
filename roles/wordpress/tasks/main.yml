@@ -1,0 +1,23 @@
+---
+    - name: remove /var/www link
+      file: path=/var/www state=absent
+
+    - name: create /var/www directory
+      file: path=/var/www state=directory
+
+    - name: Install wordpress
+      get_url: url=http://wordpress.org/latest.tar.gz dest=/var/www mode=0755
+
+    - name: Extract wordpress
+      command: tar -xzvf /var/www/latest.tar.gz -C /var/www
+      notify:
+          - restart nginx
+
+    - name: Change permission
+      command: chown -R www-data:www-data /var/www
+
+    - name: Create mysql user
+      mysql_db: name=wordpress state=present
+
+    - name: Grant all access
+      mysql_user: name=wordpress password=wordpress priv=*.*:ALL state=present
