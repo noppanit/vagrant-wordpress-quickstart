@@ -1,0 +1,29 @@
+---
+  - name: Install php5-fpm
+    apt: pkg=php5-fpm state=installed update_cache=true
+    notify:
+      - restart php5-fpm
+
+  - name: Install php5-cli
+    apt: pkg=php5-cli state=installed update_cache=true
+    notify:
+      - restart php5-fpm
+
+  - name: Install php5-curl
+    apt: pkg=php5-curl state=installed update_cache=true
+    notify:
+      - restart php5-fpm
+
+  - name: Install php5-curl
+    apt: pkg=php5-mysql state=installed update_cache=true
+    notify:
+      - restart php5-fpm
+      - restart nginx
+
+  # May be we don't need it right now, but some version of php5-frm still uses socket
+  # https://rtcamp.com/tutorials/php/fpm-sysctl-tweaking/
+  # - name: Change php5-fpm from socket to tcp
+  #   replace: dest=/etc/php5/fpm/pool.d/www.conf regexp='^listen = /var/run/php5-fpm.sock$' replace='listen = 127.0.0.1:9000' backup=
+  #   notify:
+  #     - restart php5-fpm
+  #     - restart nginx

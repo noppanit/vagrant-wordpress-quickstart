@@ -1,0 +1,9 @@
+---
+  - name: Install Nginx, php5-fpm and dev-setup
+    user: vagrant
+    hosts: all
+    sudo: true
+    roles:
+      - nginx
+      - mysql
+      - php5

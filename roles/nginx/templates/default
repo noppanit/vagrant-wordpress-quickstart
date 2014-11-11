@@ -1,0 +1,26 @@
+server {
+  listen 80;
+  server_name _;
+  root /var/www/app;
+  index index.php;
+
+  location = / {
+    try_files @site @site;
+  }
+
+  location / {
+    try_files $uri $uri/ @site;
+  }
+
+  location ~ \.php$ {
+    return 404;
+  }
+
+  location @site {
+    fastcgi_pass  127.0.0.1:9000;
+    include fastcgi_params;
+    fastcgi_param  SCRIPT_FILENAME $document_root/index.php;
+    #uncomment when running via https
+    #fastcgi_param HTTPS on;
+  }
+}
