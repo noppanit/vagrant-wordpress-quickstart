@@ -7,3 +7,4 @@
       - nginx
       - mysql
       - php5
+      - wp-cli
